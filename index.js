@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const express = require('express');
 const app = express();
+const PORT = 8080;
 
 app.use(express.json());
 
@@ -9,6 +10,10 @@ const users = [
   { id: 2, name: 'user2' },
   { id: 3, name: 'user3' },
 ];
+
+app.get('/', (req, res) => {
+  res.send('Hello World');  
+});
 
 app.get('/api/users', (req, res) => {
   res.send(users);  
@@ -51,3 +56,5 @@ function validateUser(user){
   return Joi.validate(user, schema)
   
 }
+
+app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
